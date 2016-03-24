@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>多人聊天室</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+	<link rel="stylesheet" type="text/css" href="css/stylesheet.css"/>
+
+</head>
+
+<body background="img/bg.png">
+	
+		<center>
+			<h2 ><font color="white">Welcome to chatroom! Let's chat together!</font></h2>
+			</br>
+		</center>
+		
+		<div class=" msgbackground" id="chatbg">
+		</div></br>
+		<textarea class=" form-control inputField" rows="3"  id="msg" placeholder="Please say something"></textarea>
+		<button type="button" class="btn btn-success ck button" id="launch">Biu</button></br>
+		<button type="button" class="btn btn-success button" id="clear">Clear</button>
+
+<!-- 		<div class="systemmsg" id="symsg">
+<center><p style="font-weight:bold">系统消息</p></center>
+
+</div> -->
+		<select name="list" multiple="true"  class="systemmsg" size="14">  
+<!-- 		<option   value= "title" style="font-weight:bold">系统消息：</option>
+		<option   value= ""></option>   -->
+		</select>  
+		<select name="list" multiple="true"  class="usrlist" size="13">  
+		<option   value= "title" style="font-weight:bold">在线用户：</option>
+		</select>  
+	
+
+
+<!-- Modal -->
+<div class="modal fade" id="alertNickName" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+        <h4 class="modal-title" id="myModalLabel">What's your nickname?</h4>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" id="nickname">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="submit" >确定</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+	<!-- <footer class="rights">Designed by Evercx</footer> -->
+	<script src="/socket.io/socket.io.js"></script>
+	<script type="text/javascript" src="js/jquery1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/config.js"></script>
+	<script type="text/javascript" src="js/chat.js"></script>
+</body>
+</html>

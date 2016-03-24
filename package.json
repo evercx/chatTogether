@@ -1,0 +1,15 @@
+{
+  "name": "ChatRoom",
+  "version": "0.0.1",
+  "private": true,
+  "description": "多人聊天室应用",
+  "author": {
+    "name": "Evercx",
+    "email": "evercxing@gmail.com"
+  },
+  "dependencies": {
+    "express": "^4.13.4",
+    "hbs": "^4.0.0",
+    "socket.io": "^1.4.5"
+  }
+}

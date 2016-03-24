@@ -1,0 +1,75 @@
+
+.msgbackground{
+	background:#CCC; 
+	border-radius:10px;/*圆角*/
+	padding:20px; 
+	height:420px;
+    width:600px;
+    overflow:auto;
+    position: relative;
+	left: 210px;
+}
+
+.systemmsg{
+	background:#CCC; 
+	border-radius:5px;/*圆角*/
+	padding:10px; 
+    width:300px;
+   	overflow:auto;
+	position: absolute;
+	left: 850px;
+	top: 83px;
+}
+
+.usrlist{
+	background:#CCC; 
+	border-radius:5px;/*圆角*/
+	padding:10px; 
+	position: absolute;
+	left: 850px;
+	top: 353px;
+	overflow:auto;
+	width: 300px;
+}
+
+.others{
+	position: relative;	/*相对定位*/
+	left: 50px;
+	border-radius:10px;/*圆角*/
+	padding:10px 0em 1ex 2.5%; /*内边距*/
+    width:250px;
+    margin : 0px 0px 10px 0px;/*外边距*/
+}
+
+.me{
+	position: relative;
+	left: 250px;
+	border-radius:10px;/*圆角*/
+	padding:10px 0em 1ex 2.5%;
+    width:250px;
+    margin : 0px 0px 10px 0px;
+}
+
+.button{
+	width:70px;
+	position: relative;
+	left: 740px;
+	bottom:78px;
+	margin : 0px 0px 10px 0px;/*外边距*/
+}
+
+.inputField{
+	background:#CCC; 
+    position: relative;
+	left: 210px;
+	bottom:2px;
+	width:500px;
+	height:800px;
+	resize:none;
+}
+
+.rights{
+	color:white;
+	position: absolute;
+	left: 600px;
+}
