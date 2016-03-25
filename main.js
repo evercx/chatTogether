@@ -21,6 +21,7 @@ io.on('connection',function(socket){
 				onlineUsrs.push(data);
 				client.usrname=data;
 				client.msg="用户“"+client.usrname+"”上线了";
+				console.log(client);
 				client.time=getTime();
 				client.online=true;
 				//广播系统通知
@@ -43,10 +44,8 @@ io.on('connection',function(socket){
 			client.msg="用户“"+client.usrname+"”下线了";
 			client.time=getTime();
 			if(onlineUsrs.indexOf(client.usrname)>-1){
-				console.log(onlineUsrs.indexOf(client.usrname));
 				onlineUsrs.splice(onlineUsrs.indexOf(client.usrname));//下线后取消保存该用户名
 			}
-			console.log(onlineUsrs);
 			client.online=false;
 			socket.broadcast.emit('system',client);
 			client.usrname='';
