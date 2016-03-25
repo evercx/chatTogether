@@ -3,6 +3,7 @@
 	border-radius:10px;/*圆角*/
 	padding:20px; 
 	height:508px;
+	overflow: auto;
 }
 
 .inputbg{
@@ -31,6 +32,7 @@
 	padding:10px;
 	width: 100%;
 	margin-bottom: 15px;
+	overflow: auto;
 }
 
 .usrlist{
@@ -38,6 +40,7 @@
 	border-radius:5px;/*圆角*/
 	padding:10px;
 	width: 100%; 
+	overflow: auto;
 }
 
 
