@@ -4,15 +4,6 @@ var socket = io.connect(ip);
 var myName='';
 
 
-// $(function(){
-// 	document.onkeydown = function(e){ 
-// 	    var ev = document.all ? window.event : e;
-// 	    if(ev.keyCode==13) {
-// 	    	$("#launch").click();
-// 	     }
-// 	}	
-// })
-
 $(function(){
 	 showModal();
 
@@ -80,7 +71,7 @@ socket.on('nameerror', function (data) {
 $("#launch").click(function () {
 	if($("#msg").val()!==''){
 		socket.send($("#msg").val());
-		$("#msg").val('');
+		$("#msg").val("");
 	}
 });
 
@@ -107,6 +98,7 @@ function getOthersDIV(json){
 	$("#chatbg").append($div);
 	document.getElementById('chatbg').scrollTop = document.getElementById('chatbg').scrollHeight;
 }
+
 function getMyDIV(json){
 	console.log(json);
 	var $div="";
@@ -122,6 +114,7 @@ function getSystemMsgDIV(json){
 	$div='<option   value= "'+json.time+'">system @ '+json.time+'： '+json.msg+'</option>'
 	console.log($div);
 	$(".systemmsg").append($div);
+	document.getElementsByClassName('systemmsg').scrollTop = document.getElementsByClassName('systemmsg').scrollHeight;
 }
 
 // $("#msg").bind('keypress',function(event){
@@ -134,6 +127,7 @@ function getSystemMsgDIV(json){
 //通过“回车”提交聊天信息
 $("#msg").keydown(function(e) {
     if (e.keyCode === 13) {
+    	e.preventDefault();//阻止文本域换行
 		$("#launch").click();
     }
 });
