@@ -3,21 +3,19 @@
 var socket = io.connect(ip);
 var myName='';
 
-function showModal(){
-	$('#alertNickName').modal({backdrop:'static', keyboard: false});
-	deleteBackFade();
-}
-function deleteBackFade(){
-	var t=document.getElementsByClassName("modal-backdrop fade in");
-	for(var i=0;i<t.length-1;i++)    
-	  {  
-	     t[i].parentNode.removeChild(t[i]); 
-	  }
-}
 
+// $(function(){
+// 	document.onkeydown = function(e){ 
+// 	    var ev = document.all ? window.event : e;
+// 	    if(ev.keyCode==13) {
+// 	    	$("#launch").click();
+// 	     }
+// 	}	
+// })
 
 $(function(){
 	 showModal();
+
 });
 
 //提交昵称
@@ -65,6 +63,7 @@ socket.on('users',function(data){
 	for(var i in data.users){
 		var $option='<option value= "'+data.users[i]+'">'+data.users[i]+'</option>'
 		$('.usrlist').append($option);
+
 	}
 });
 
@@ -81,25 +80,40 @@ socket.on('nameerror', function (data) {
 $("#launch").click(function () {
 	if($("#msg").val()!==''){
 		socket.send($("#msg").val());
-		$("#msg").val('');		
+		$("#msg").val('');
 	}
-
 });
 
 $("#clear").click(function(){
 	$("#chatbg").empty();
 });
 
+function showModal(){
+	$('#alertNickName').modal({backdrop:'static', keyboard: false});
+	deleteBackFade();
+}
+function deleteBackFade(){
+	var t=document.getElementsByClassName("modal-backdrop fade in");
+	for(var i=0;i<t.length-1;i++)    
+	  {  
+	     t[i].parentNode.removeChild(t[i]); 
+	  }
+}
+
+
 function getOthersDIV(json){
 	var $div='';
 	$div='<div class="alert alert-info others">'+json.usrname+' @ '+json.time+'：</br>'+json.msg+'</div>'
 	$("#chatbg").append($div);
+	document.getElementById('chatbg').scrollTop = document.getElementById('chatbg').scrollHeight;
 }
 function getMyDIV(json){
 	console.log(json);
 	var $div="";
 	$div='<div class="alert alert-success me">我 @ '+json.time+'：</br>'+json.msg+'</div>';
 	$("#chatbg").append($div);
+	document.getElementById('chatbg').scrollTop = document.getElementById('chatbg').scrollHeight;
+	//$("#chatbg").scrollTop=$("#chatbg").scrollHeight;
 }
 
 function getSystemMsgDIV(json){
@@ -110,9 +124,17 @@ function getSystemMsgDIV(json){
 	$(".systemmsg").append($div);
 }
 
+// $("#msg").bind('keypress',function(event){
+//     if(event.keyCode == "13")    
+//     {
+//     	$("#launch").click();
+//     }
+// });
+
 //通过“回车”提交聊天信息
-/*$("#msg").keydown(function(e) {
+$("#msg").keydown(function(e) {
     if (e.keyCode === 13) {
 		$("#launch").click();
     }
-});*/
+});
+
