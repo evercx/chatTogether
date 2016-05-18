@@ -5,52 +5,66 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
 var onlineUsrs=[];
+var roomOnlineUsrs={
+	Room1:[],
+	Room2:[],
+	Room3:[],
+	Room4:[],
+	Room5:[]
+}
+var rooms = {};
 //监听socket连接
 io.on('connection',function(socket){
 	var client={
 		usrname:'',
 		time:'',
 		msg:'',
-		online:false
+		online:false,
+		room:''
 	}
-	socket.on('registername', function (data) {
+	socket.on('registerEvent', function (data) {
 		if(!client.usrname){	//第一次连接
-			if(onlineUsrs.indexOf(data)!== -1){
+			if(roomOnlineUsrs[data.room].indexOf(data.nickname)!== -1){
 				socket.emit('nameerror',{msg:"昵称重复 请重试"});
 			}else{
-				onlineUsrs.push(data);
-				client.usrname=data;
+				roomOnlineUsrs[data.room].push(data.nickname);
+				client.usrname = data.nickname;
+				client.room = data.room;
 				client.msg="用户“"+client.usrname+"”上线了";
-				console.log(client);
 				client.time=getTime();
 				client.online=true;
 				//广播系统通知
-				socket.broadcast.emit('system',client);
-				socket.emit('system',client);
+				console.log(client);
+				socket.broadcast.emit('system'+client.room,client);
+				socket.emit('system'+client.room,client);
 				//广播在线用户表
 				//socket.broadcast.emit('users',{users:onlineUsrs});
-				socket.emit('users',{users:onlineUsrs});
+				//socket.emit('users'+client.room,{users:onlineUsrs});
+					socket.on('roomMsg'+client.room, function (data) {
+						console.log("事件："+'roomMsg'+client.room);
+						console.log("事件数据："+data);
+						client.msg=data;
+						client.time=getTime();
+						socket.broadcast.emit('msg'+client.room,client);
+						socket.emit('msg'+client.room,client);
+					});
 			}
 		}
 	});
-	socket.on('message', function (data) {
-		client.msg=data;
-		client.time=getTime();
-		socket.broadcast.emit('msg',client);
-		socket.emit('msg',client);
-	});
+
+	
+
     socket.on('disconnect', function () {
     	if(client.usrname!==''){
 			client.msg="用户“"+client.usrname+"”下线了";
 			client.time=getTime();
-			if(onlineUsrs.indexOf(client.usrname)>-1){
-				onlineUsrs.splice(onlineUsrs.indexOf(client.usrname));//下线后取消保存该用户名
+			if(roomOnlineUsrs[client.room].indexOf(client.usrname)>-1){
+				roomOnlineUsrs[client.room].splice(roomOnlineUsrs[client.room].indexOf(client.usrname));//下线后取消保存该用户名
 			}
 			client.online=false;
-			socket.broadcast.emit('system',client);
+			socket.broadcast.emit('system'+client.room,client);
 			client.usrname='';
     	}
-			
     });
 
 });
