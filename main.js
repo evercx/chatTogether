@@ -12,6 +12,7 @@ var roomOnlineUsrs={
 	Room4:[],
 	Room5:[]
 }
+
 var rooms = {};
 //监听socket连接
 io.on('connection',function(socket){
