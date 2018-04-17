@@ -2,7 +2,7 @@
 	background:#CCC; 
 	border-radius:10px;/*圆角*/
 	padding:20px; 
-	height:508px;
+	height:608px;
 	overflow: auto;
 }
 
@@ -31,6 +31,7 @@
 	border-radius:5px;/*圆角*/
 	padding:10px;
 	width: 100%;
+	height:300px;
 	margin-bottom: 15px;
 	overflow: auto;
 }
